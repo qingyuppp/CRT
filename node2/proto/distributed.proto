@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = ".;node2";
+
+service StatsService {
+  rpc GetStats(StatsRequest) returns (StatsResponse);
+}
+
+message StatsRequest {
+  string node_id = 1;
+}
+
+message StatsResponse {
+  float cpu_percent = 1;
+  float mem_percent = 2;
+}
