@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "Cluster_Resource_Table/node1/proto"
+	pb "Cluster_Resource_Table/node2/proto"
 	"context"
 	"fmt"
 	"github.com/shirou/gopsutil/cpu"
@@ -23,12 +23,12 @@ func (s *server) GetStats(ctx context.Context, req *pb.StatsRequest) (*pb.StatsR
 	return &pb.StatsResponse{
 		CpuPercent: float32(cpuPercent[0]),
 		MemPercent: float32(memInfo.UsedPercent),
-		NodeId:     int32(01),
+		NodeId:     int32(02),
 	}, nil
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", ":50052")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -36,7 +36,7 @@ func main() {
 	s := grpc.NewServer()
 	pb.RegisterStatsServiceServer(s, &server{})
 
-	fmt.Println("Server is running on port :50051")
+	fmt.Println("Server is running on port :50052")
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

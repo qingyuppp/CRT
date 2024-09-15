@@ -6,12 +6,12 @@ import (
 	"log"
 	"time"
 
-	pb "Cluster_Resource_Table/node2/proto"
+	pb "Cluster_Resource_Table/node1/proto"
 	"google.golang.org/grpc"
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

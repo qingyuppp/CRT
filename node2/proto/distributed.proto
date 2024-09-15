@@ -13,4 +13,5 @@ message StatsRequest {
 message StatsResponse {
   float cpu_percent = 1;
   float mem_percent = 2;
+  int32 node_id = 3;
 }
